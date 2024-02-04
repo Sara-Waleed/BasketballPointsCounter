@@ -24,8 +24,6 @@ class BasketballPoints extends StatelessWidget {
 }
 
 class Body extends StatelessWidget {
-int counter1=0;
-int counter2=0;
   @override
   Widget build(BuildContext context) {
 
@@ -53,7 +51,7 @@ int counter2=0;
                           ),
                         ),
                         Text(
-                          '',
+                          '${BlocProvider.of<counterCubit>(context).counter}',
                           style: const TextStyle(
                             fontSize: 150,
                           ),
@@ -64,7 +62,10 @@ int counter2=0;
                               backgroundColor: Colors.orange,
                               minimumSize: const Size(150, 50),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              BlocProvider.of<counterCubit>(context).TeamAIncreament(buttonNumber:1);
+
+                            },
                             child: const Text(
                               'Add 1 Point',
                               style: TextStyle(fontSize: 18, color: Colors.black),
@@ -77,7 +78,9 @@ int counter2=0;
                               backgroundColor: Colors.orange,
                               minimumSize: const Size(150, 50),
                             ),
-                            onPressed: () { },
+                            onPressed: () {
+                              BlocProvider.of<counterCubit>(context).TeamAIncreament(buttonNumber:2);
+                            },
                             child: const Text(
                               'Add 2 Points',
                               style: TextStyle(fontSize: 18, color: Colors.black),
@@ -90,7 +93,10 @@ int counter2=0;
                               backgroundColor: Colors.orange,
                               minimumSize: const Size(150, 50),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              BlocProvider.of<counterCubit>(context).TeamAIncreament(buttonNumber:3);
+
+                            },
                             child: const Text(
                               'Add 3 Points',
                               style: TextStyle(fontSize: 18, color: Colors.black),
@@ -115,7 +121,7 @@ int counter2=0;
                           ),
                         ),
                         Text(
-                          '',
+                          '${BlocProvider.of<counterCubit>(context).counter2}',
                           style:const TextStyle(
                             fontSize: 150,
                           ),
@@ -126,7 +132,9 @@ int counter2=0;
                               backgroundColor: Colors.orange,
                               minimumSize: const Size(150, 50),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              BlocProvider.of<counterCubit>(context).TeamBIncreament(buttonNumber:1);
+                            },
                             child: const Text(
                               'Add 1 Point',
                               style: TextStyle(fontSize: 18, color: Colors.black),
@@ -139,7 +147,10 @@ int counter2=0;
                               backgroundColor: Colors.orange,
                               minimumSize: const Size(150, 50),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              BlocProvider.of<counterCubit>(context).TeamBIncreament(buttonNumber:2);
+
+                            },
                             child: const Text(
                               'Add 2 Points',
                               style: TextStyle(fontSize: 18, color: Colors.black),
@@ -152,7 +163,10 @@ int counter2=0;
                               backgroundColor: Colors.orange,
                               minimumSize: const Size(150, 50),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              BlocProvider.of<counterCubit>(context).TeamBIncreament(buttonNumber:3);
+
+                            },
                             child: const Text(
                               'Add 3 Points',
                               style: TextStyle(fontSize: 18, color: Colors.black),
@@ -182,11 +196,9 @@ int counter2=0;
       },
       listener:(context, state) {
    if(state is CounterTeamA){
-     counter1 = BlocProvider.of<counterCubit>(context).counter;
 
    }
    if(state is CounterTeamB){
-     counter2 = BlocProvider.of<counterCubit>(context).counter2;
 
    }
       },

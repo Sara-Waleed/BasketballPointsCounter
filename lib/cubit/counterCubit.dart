@@ -7,7 +7,7 @@ class counterCubit extends Cubit<counterState>{
   int counter2=0;
 
   counterCubit(super.initialState);
-   void TeamAIncreament(int buttonNumber){
+   void TeamAIncreament({required int buttonNumber}){
 counter+=buttonNumber;
 emit(CounterTeamA());
 
@@ -15,7 +15,7 @@ emit(CounterTeamA());
 
 
 
-void TeamBIncreament(int buttonNumber){
+void TeamBIncreament({required  int buttonNumber}){
   counter2+=buttonNumber;
   emit(CounterTeamB());
 
