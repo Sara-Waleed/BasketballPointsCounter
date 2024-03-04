@@ -1,20 +1,19 @@
-
-import 'package:basketballpointsscreen/cubit/counterCubit.dart';
-import 'package:basketballpointsscreen/cubit/states.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../cubit/basket_pointer_cubit.dart';
+
+
+
 
 class BasketballPoints extends StatelessWidget {
-  int counter =0;
-  int counter2=0;
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:(context) => counterCubit(counterState as counterState) ,
+      create:(context) => BasketPointerCubit() ,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Body(),
@@ -24,10 +23,11 @@ class BasketballPoints extends StatelessWidget {
 }
 
 class Body extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
 
-    return BlocConsumer<counterCubit, counterState>(
+    return BlocConsumer<BasketPointerCubit, BasketPointerState>(
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -36,7 +36,7 @@ class Body extends StatelessWidget {
             title: const Text('Points counter '),
           ),
           body: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 80),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Column(
               children: [
                 Row(
@@ -51,7 +51,7 @@ class Body extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '${BlocProvider.of<counterCubit>(context).counter}',
+                          '${BlocProvider.of<BasketPointerCubit>(context).counter}',
                           style: const TextStyle(
                             fontSize: 150,
                           ),
@@ -63,7 +63,7 @@ class Body extends StatelessWidget {
                               minimumSize: const Size(150, 50),
                             ),
                             onPressed: () {
-                              BlocProvider.of<counterCubit>(context).TeamAIncreament(buttonNumber:1);
+                              BlocProvider.of<BasketPointerCubit>(context).TeamAIncreament(buttonNumber:1);
 
                             },
                             child: const Text(
@@ -79,7 +79,7 @@ class Body extends StatelessWidget {
                               minimumSize: const Size(150, 50),
                             ),
                             onPressed: () {
-                              BlocProvider.of<counterCubit>(context).TeamAIncreament(buttonNumber:2);
+                              BlocProvider.of<BasketPointerCubit>(context).TeamAIncreament(buttonNumber:2);
                             },
                             child: const Text(
                               'Add 2 Points',
@@ -94,7 +94,7 @@ class Body extends StatelessWidget {
                               minimumSize: const Size(150, 50),
                             ),
                             onPressed: () {
-                              BlocProvider.of<counterCubit>(context).TeamAIncreament(buttonNumber:3);
+                              BlocProvider.of<BasketPointerCubit>(context).TeamAIncreament(buttonNumber:3);
 
                             },
                             child: const Text(
@@ -121,7 +121,7 @@ class Body extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '${BlocProvider.of<counterCubit>(context).counter2}',
+                          '${BlocProvider.of<BasketPointerCubit>(context).counter2}',
                           style:const TextStyle(
                             fontSize: 150,
                           ),
@@ -133,7 +133,7 @@ class Body extends StatelessWidget {
                               minimumSize: const Size(150, 50),
                             ),
                             onPressed: () {
-                              BlocProvider.of<counterCubit>(context).TeamBIncreament(buttonNumber:1);
+                              BlocProvider.of<BasketPointerCubit>(context).TeamBIncreament(buttonNumber:1);
                             },
                             child: const Text(
                               'Add 1 Point',
@@ -148,7 +148,7 @@ class Body extends StatelessWidget {
                               minimumSize: const Size(150, 50),
                             ),
                             onPressed: () {
-                              BlocProvider.of<counterCubit>(context).TeamBIncreament(buttonNumber:2);
+                              BlocProvider.of<BasketPointerCubit>(context).TeamBIncreament(buttonNumber:2);
 
                             },
                             child: const Text(
@@ -164,7 +164,7 @@ class Body extends StatelessWidget {
                               minimumSize: const Size(150, 50),
                             ),
                             onPressed: () {
-                              BlocProvider.of<counterCubit>(context).TeamBIncreament(buttonNumber:3);
+                              BlocProvider.of<BasketPointerCubit>(context).TeamBIncreament(buttonNumber:3);
 
                             },
                             child: const Text(
@@ -184,6 +184,7 @@ class Body extends StatelessWidget {
                       minimumSize: const Size(150, 50),
                     ),
                     onPressed: () {
+                      BlocProvider.of<BasketPointerCubit>(context).resetPoints();
                     },
                     child: const Text(
                       'Reset',
@@ -194,14 +195,7 @@ class Body extends StatelessWidget {
           ),
         );
       },
-      listener:(context, state) {
-   if(state is CounterTeamA){
-
-   }
-   if(state is CounterTeamB){
-
-   }
-      },
+      listener:(context, state) {},
 
     );
   }
